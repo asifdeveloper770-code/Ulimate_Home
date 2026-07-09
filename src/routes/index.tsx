@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useReveal } from "@/hooks/use-reveal";
 
 import heroImg from "@/assets/hero.jpg";
@@ -12,6 +12,45 @@ import processImg from "@/assets/process.jpg";
 export const Route = createFileRoute("/")({
   component: Home,
 });
+const serviceVideos = [
+  {
+    id: 1,
+    title: "Millwork & Luxury Furniture",
+    description: "Handcrafted interiors with exceptional attention.",
+    video: "src/assets/WhatsApp Video 2026-07-08 at 10.27.34 PM.mp4",
+  },
+  {
+    id: 2,
+    title: "Custom Building",
+    description: "Luxury homes built from foundation to finish.",
+    video: "src/assets/WhatsApp Video 2026-07-08 at 10.22.44 PM.mp4",
+  },
+  {
+    id: 3,
+    title: "Luxury Remodels",
+    description: "Transforming homes into timeless living spaces.",
+    video: "src/assets/WhatsApp Video 2026-07-08 at 10.22.44 PM (2).mp4",
+  },
+  {
+    id: 4,
+    title: "Bathrooms & Kitchens",
+    description: "Elegant spaces designed for everyday luxury.",
+    video: "src/assets/WhatsApp Video 2026-07-08 at 10.22.45 PM.mp4",
+  },
+  {
+    id: 5,
+    title: "Bathrooms & Kitchens",
+    description: "Elegant spaces designed for everyday luxury.",
+    video: "src/assets/WhatsApp Video 2026-07-08 at 10.26.18 PM.mp4",
+  },
+  {
+    id: 6,
+    title: "Bathrooms & Kitchens",
+    description: "Elegant spaces designed for everyday luxury.",
+    video: "src/assets/WhatsApp Video 2026-07-08 at 10.27.34 PM.mp4",
+  },
+];
+
 
 const projects = [
   { slug: "ridgeline-residence", title: "The Ridgeline Residence", location: "Aspen, CO", type: "Custom Estate", img: p3 },
@@ -43,12 +82,11 @@ function Nav() {
           <span className="font-display text-2xl text-cream">Builders</span>
         </a>
         <nav className="hidden lg:flex items-center gap-10">
+          <Link to="/gallery" className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground hover:text-gold transition-colors">Gallery</Link>
           <Link to="/portfolio" className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground hover:text-gold transition-colors">Portfolio</Link>
-          {["Services", "Process", "About", "Contact"].map((l) => (
-            <a key={l} href={`#${l.toLowerCase()}`} className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground hover:text-gold transition-colors">
-              {l}
-            </a>
-          ))}
+          <Link to="/" className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground hover:text-gold transition-colors">About</Link>
+          <Link to="/" className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground hover:text-gold transition-colors">Contact</Link>
+
         </nav>
         <a href="#contact" className="hidden md:inline-flex border border-gold/60 px-5 py-2.5 text-[11px] tracking-[0.28em] uppercase text-gold hover:bg-gold hover:text-primary-foreground transition-colors">
           Start a Project
@@ -61,8 +99,8 @@ function Nav() {
 function Hero() {
   return (
     <section id="top" className="relative h-screen min-h-[720px] w-full overflow-hidden">
-      <img src={heroImg} alt="Luxury custom home at dusk" width={1920} height={1200} className="ken-burns absolute inset-0 h-full w-full object-cover" />
-      <div className="absolute inset-0 hero-gradient" />
+      <img src={heroImg} alt="Luxury custom home at dusk" width={1920} height={1200} className="ken-burns  absolute inset-0 h-full w-full object-cover" />
+      {/* <div className="absolute inset-0 hero-gradient" /> */}
       <div className="pointer-events-none absolute -top-24 -right-24 w-[520px] h-[520px] rounded-full float-slow" style={{ background: "radial-gradient(closest-side, oklch(0.78 0.12 82 / 0.18), transparent 70%)" }} />
       <div className="relative z-10 h-full max-w-[1600px] mx-auto px-6 md:px-12 flex flex-col justify-end pb-24 md:pb-32">
         <p className="eyebrow mb-6" data-reveal>Est. 2004 — Nationwide</p>
@@ -183,31 +221,112 @@ function Projects() {
 }
 
 function Services() {
+  const [current, setCurrent] = useState(0);
+
+  const videoRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const video = videoRef.current;
+
+    if (!video) return;
+
+    const handleEnded = () => {
+      setCurrent((prev) => (prev + 1) % serviceVideos.length);
+    };
+
+    video.addEventListener("ended", handleEnded);
+
+    return () => {
+      video.removeEventListener("ended", handleEnded);
+    };
+  }, []);
+  useEffect(() => {
+    videoRef.current?.load();
+    videoRef.current?.play();
+  }, [current]);
   return (
-    <section id="services" className="py-24 md:py-36 bg-card">
+    <section
+      id="serviceVideos"
+      className="relative py-16 md:py-24 bg-black overflow-hidden"
+    >
       <div className="max-w-[1600px] mx-auto px-6 md:px-12">
-        <div className="max-w-3xl mb-20" data-reveal>
-          <p className="eyebrow mb-5">What We Do</p>
-          <h2 className="text-4xl md:text-6xl text-cream leading-tight">
-            One firm. Every discipline of the <span className="italic text-shimmer">custom home.</span>
+
+        <div className="mb-16">
+
+          <p className="eyebrow mb-5">
+            Featured Services
+          </p>
+
+          <h2 className="text-5xl md:text-7xl text-cream max-w-4xl">
+
+            Built for
+            <span className="italic text-gold">
+              {" "}exceptional living.
+            </span>
+
           </h2>
+
         </div>
-        <div className="grid md:grid-cols-2 gap-x-16 gap-y-14">
-          {services.map((s, i) => (
-            <div
-              key={s.title}
-              data-reveal
-              data-reveal-delay={String((i % 4) + 1)}
-              className="group border-t border-border pt-8 flex gap-8 transition-colors duration-500 hover:border-gold cursor-default"
+
+        <div className="grid lg:grid-cols-[1.6fr_380px] gap-8 items-stretch">
+
+          {/* VIDEO */}
+          <div className="relative overflow-hidden rounded-3xl h-[550px]">
+
+            <video
+              ref={videoRef}
+              key={serviceVideos[current].video}
+              autoPlay
+              muted
+              playsInline
+              className="w-full h-full object-cover transition-opacity duration-700"
             >
-              <div className="font-display text-3xl gold-text shrink-0 transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-1">{s.n}</div>
-              <div>
-                <h3 className="text-2xl md:text-3xl text-cream mb-3 transition-colors duration-300 group-hover:text-gold">{s.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{s.body}</p>
-              </div>
+              <source
+                src={serviceVideos[current].video}
+                type="video/mp4"
+              />
+            </video>
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+
+            <div className="absolute bottom-8 left-8 max-w-xl">
+              <h3 className="text-4xl md:text-5xl text-white mb-4">
+                {serviceVideos[current].title}
+              </h3>
+
+              <p className="text-white/80 text-lg">
+                {serviceVideos[current].description}
+              </p>
             </div>
-          ))}
+
+          </div>
+
+          {/* SIDE LIST */}
+          <div className="flex flex-col justify-between h-[330] gap-3">
+
+            {serviceVideos.map((service, index) => (
+              <button
+                key={service.id}
+                onClick={() => setCurrent(index)}
+                className={`flex-1 text-left p-3 border transition-all duration-500
+        ${current === index
+                    ? "border-gold bg-white/5"
+                    : "border-white/10 hover:border-gold"
+                  }`}
+              >
+                <h4 className="text-lg text-white mb-2">
+                  {service.title}
+                </h4>
+
+                <p className="text-sm text-white/60 leading-relaxed">
+                  {service.description}
+                </p>
+              </button>
+            ))}
+
+          </div>
+
         </div>
+
       </div>
 
     </section>

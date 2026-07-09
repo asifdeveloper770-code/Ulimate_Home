@@ -7,6 +7,7 @@ const searchSchema = z.object({
   category: fallback(z.enum(CATEGORIES), "All").default("All"),
 });
 
+
 export const Route = createFileRoute("/portfolio")({
   validateSearch: zodValidator(searchSchema),
   head: () => ({
@@ -47,11 +48,11 @@ function PortfolioNav() {
           <span className="font-display text-2xl gold-text italic">Pro</span>
           <span className="font-display text-2xl text-cream">Builders</span>
         </Link>
-        <nav className="hidden md:flex items-center gap-10">
+        <nav className="hidden md:flex gap-10 text-sm uppercase tracking-widest">
           <Link to="/" className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground hover:text-gold">Home</Link>
           <Link to="/portfolio" className="text-[11px] tracking-[0.28em] uppercase text-gold">Portfolio</Link>
-          <Link to="/" hash="services" className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground hover:text-gold">Services</Link>
-          <Link to="/" hash="contact" className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground hover:text-gold">Contact</Link>
+          <Link to="/gallery" className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground hover:text-gold">Gallery</Link>
+          <Link to="/" className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground hover:text-gold">Contact</Link>
         </nav>
       </div>
     </header>
