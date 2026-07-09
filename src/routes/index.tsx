@@ -82,13 +82,13 @@ function Nav() {
           <span className="font-display text-2xl text-cream">Builders</span>
         </a>
         <nav className="hidden lg:flex items-center gap-10">
-          <Link to="/gallery" className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground hover:text-gold transition-colors">Gallery</Link>
-          <Link to="/portfolio" className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground hover:text-gold transition-colors">Portfolio</Link>
-          <Link to="/" className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground hover:text-gold transition-colors">About</Link>
-          <Link to="/" className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground hover:text-gold transition-colors">Contact</Link>
+          <Link to="/gallery" className="text-[11px] tracking-[0.28em] uppercase text-foreground hover:text-gold transition-colors">Gallery</Link>
+          <Link to="/portfolio" className="text-[11px] tracking-[0.28em] uppercase text-foreground hover:text-gold transition-colors">Portfolio</Link>
+          <Link to="/" className="text-[11px] tracking-[0.28em] uppercase text-foreground hover:text-gold transition-colors">About</Link>
+          <Link to="/" className="text-[11px] tracking-[0.28em] uppercase text-foreground hover:text-gold transition-colors">Contact</Link>
 
         </nav>
-        <a href="#contact" className="hidden md:inline-flex border border-gold/60 px-5 py-2.5 text-[11px] tracking-[0.28em] uppercase text-gold hover:bg-gold hover:text-primary-foreground transition-colors">
+        <a href="#contact" className="hidden md:inline-flex border border-gold/60 px-5 py-2.5 text-[11px] tracking-[0.28em] uppercase text-primary-foreground hover:bg-gold hover:text-primary-foreground transition-colors">
           Start a Project
         </a>
       </div>
