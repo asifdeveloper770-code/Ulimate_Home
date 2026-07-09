@@ -1,11 +1,32 @@
-import p1 from "@/assets/project-1.jpg";
-import p2 from "@/assets/project-2.jpg";
-import p3 from "@/assets/project-3.jpg";
-import p4 from "@/assets/project-4.jpg";
-import p5 from "@/assets/project-5.jpg";
-import p6 from "@/assets/project-6.jpg";
-import p7 from "@/assets/project-7.jpg";
-import p8 from "@/assets/project-8.jpg";
+import p1 from "@/assets/WhatsApp Image 2026-07-08 at 10.27.09 PM (1).jpeg";
+import p2 from "@/assets/WhatsApp Image 2026-07-08 at 10.22.30 PM (4).jpeg";
+import p3 from "@/assets/WhatsApp Image 2026-07-08 at 10.22.31 PM.jpeg";
+import p4 from "@/assets/WhatsApp Image 2026-07-08 at 10.22.42 PM (2).jpeg";
+import p5 from "@/assets/WhatsApp Image 2026-07-08 at 10.22.37 PM (2).jpeg";
+import p6 from "@/assets/WhatsApp Image 2026-07-08 at 10.27.08 PM.jpeg";
+import p7 from "@/assets/WhatsApp Image 2026-07-08 at 10.27.09 PM.jpeg";
+import p11 from "@/assets/WhatsApp Image 2026-07-08 at 10.26.58 PM (1).jpeg";
+import p12 from "@/assets/WhatsApp Image 2026-07-08 at 10.26.48 PM (1).jpeg";
+import p13 from "@/assets/WhatsApp Image 2026-07-08 at 10.26.48 PM.jpeg";
+import p14 from "@/assets/WhatsApp Image 2026-07-08 at 10.26.54 PM (2).jpeg";
+import p21 from "@/assets/WhatsApp Image 2026-07-08 at 10.22.27 PM (1).jpeg";
+import p22 from "@/assets/WhatsApp Image 2026-07-08 at 10.22.27 PM (2).jpeg";
+import p23 from "@/assets/WhatsApp Image 2026-07-08 at 10.22.28 PM.jpeg";
+import p31 from "@/assets/WhatsApp Image 2026-07-08 at 10.22.33 PM.jpeg";
+import p32 from "@/assets/WhatsApp Image 2026-07-08 at 10.22.35 PM (3).jpeg";
+import p33 from "@/assets/WhatsApp Image 2026-07-08 at 10.22.35 PM (1).jpeg";
+import p41 from "@/assets/WhatsApp Image 2026-07-08 at 10.26.43 PM.jpeg";
+import p42 from "@/assets/WhatsApp Image 2026-07-08 at 10.26.45 PM (1).jpeg";
+import p43 from "@/assets/WhatsApp Image 2026-07-08 at 10.26.45 PM (2).jpeg";
+import p51 from "@/assets/WhatsApp Image 2026-07-08 at 10.22.35 PM.jpeg";
+import p52 from "@/assets/WhatsApp Image 2026-07-08 at 10.27.08 PM (2).jpeg";
+import p54 from "@/assets/WhatsApp Image 2026-07-08 at 10.22.37 PM (2).jpeg";
+import p61 from "@/assets/WhatsApp Image 2026-07-08 at 10.22.35 PM (2).jpeg";
+import p62 from "@/assets/WhatsApp Image 2026-07-08 at 10.27.09 PM (1).jpeg";
+import p63 from "@/assets/WhatsApp Image 2026-07-08 at 10.27.09 PM.jpeg";
+import p71 from "@/assets/WhatsApp Image 2026-07-08 at 10.26.22 PM.jpeg";
+import p72 from "@/assets/WhatsApp Image 2026-07-08 at 10.22.26 PM (1).jpeg";
+import p73 from "@/assets/WhatsApp Image 2026-07-08 at 10.27.36 PM.jpeg";
 
 export const CATEGORIES = [
   "All",
@@ -35,7 +56,7 @@ export interface Project {
 export const PROJECTS: Project[] = [
   {
     slug: "ridgeline-residence",
-    title: "The Ridgeline Residence",
+    title: "Cabinetry",
     location: "Aspen, CO",
     year: 2024,
     category: "Custom Homes",
@@ -43,7 +64,7 @@ export const PROJECTS: Project[] = [
     duration: "28 months",
     scope: ["Ground-up construction", "Architecture", "Interior design", "Landscape"],
     cover: p3,
-    gallery: [p3, p5, p6, p8],
+    gallery: [p31, p32, p33],
     summary:
       "A mountain retreat carved into a south-facing ridge, framing the Elk range through walls of glass and hand-set stone.",
     narrative: [
@@ -54,7 +75,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "marble-brass-kitchen",
-    title: "Marble & Brass Kitchen",
+    title: "Wood Works",
     location: "Beverly Hills, CA",
     year: 2024,
     category: "Interior Design",
@@ -62,7 +83,7 @@ export const PROJECTS: Project[] = [
     duration: "9 months",
     scope: ["Interior design", "Custom millwork", "Lighting design"],
     cover: p1,
-    gallery: [p1, p6, p8, p4],
+    gallery: [p11, p12, p13, p14],
     summary:
       "A gut renovation of a 1927 kitchen and adjoining pantry, reimagined with book-matched Calacatta Viola and unlacquered brass.",
     narrative: [
@@ -73,7 +94,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "alpine-glass-house",
-    title: "Alpine Glass House",
+    title: "Kitchens",
     location: "Park City, UT",
     year: 2023,
     category: "Architecture",
@@ -81,7 +102,7 @@ export const PROJECTS: Project[] = [
     duration: "22 months",
     scope: ["Architectural design", "Construction management"],
     cover: p2,
-    gallery: [p2, p5, p7, p3],
+    gallery: [p2, p21, p22, p23],
     summary:
       "A three-volume composition of blackened steel, rammed earth, and structural glass on a private mountain parcel.",
     narrative: [
@@ -92,7 +113,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "serenity-master-suite",
-    title: "Serenity Master Suite",
+    title: "Remodels",
     location: "Greenwich, CT",
     year: 2023,
     category: "Renovation",
@@ -100,7 +121,7 @@ export const PROJECTS: Project[] = [
     duration: "11 months",
     scope: ["Interior renovation", "Custom joinery", "Bathroom design"],
     cover: p4,
-    gallery: [p4, p8, p6, p1],
+    gallery: [p41, p42, p43],
     summary:
       "A full-floor renovation transforming a compartmented 1980s master into a serene, single-volume retreat.",
     narrative: [
@@ -111,7 +132,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "twilight-estate",
-    title: "Twilight Estate",
+    title: "Customs Homes",
     location: "Napa Valley, CA",
     year: 2024,
     category: "Custom Homes",
@@ -119,7 +140,7 @@ export const PROJECTS: Project[] = [
     duration: "34 months",
     scope: ["Ground-up construction", "Architecture", "Landscape"],
     cover: p5,
-    gallery: [p5, p3, p7, p2],
+    gallery: [p51, p52, p54],
     summary:
       "A multi-generational estate arranged around a linear reflecting pool, designed to host large family gatherings without ever feeling large.",
     narrative: [
@@ -128,9 +149,17 @@ export const PROJECTS: Project[] = [
       "The house was completed on budget and delivered two weeks ahead of the client's youngest daughter's wedding — which was, in the end, the only deadline that mattered.",
     ],
   },
+  //  "All",
+  // "Custom Homes",
+  // "Kitchens",
+  // "Bathrooms",
+  // "Millwork",
+  // "Cabinetry",
+  // "Remodels",
+  // "Woodwork",
   {
     slug: "great-room-reimagined",
-    title: "The Great Room, Reimagined",
+    title: "Millwork",
     location: "Lake Forest, IL",
     year: 2024,
     category: "Interior Design",
@@ -138,7 +167,7 @@ export const PROJECTS: Project[] = [
     duration: "7 months",
     scope: ["Interior design", "Art curation", "Custom furniture"],
     cover: p6,
-    gallery: [p6, p1, p4, p8],
+    gallery: [p61, p62, p63],
     summary:
       "A two-story great room refreshed with book-matched marble, warm walnut paneling, and a bespoke sculptural chandelier.",
     narrative: [
@@ -149,7 +178,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "coastal-belvedere",
-    title: "Coastal Belvedere",
+    title: "Bathroom",
     location: "Malibu, CA",
     year: 2023,
     category: "Architecture",
@@ -157,7 +186,7 @@ export const PROJECTS: Project[] = [
     duration: "19 months",
     scope: ["Architectural design", "Construction management"],
     cover: p7,
-    gallery: [p7, p5, p3, p2],
+    gallery: [p71, p72, p73],
     summary:
       "A cliffside residence organized around a single long terrace, engineered to withstand ocean weather without ever feeling armored.",
     narrative: [
@@ -166,25 +195,7 @@ export const PROJECTS: Project[] = [
       "The house is quiet, generous, and — because of the material choices — genuinely maintenance-free.",
     ],
   },
-  {
-    slug: "book-matched-bath",
-    title: "The Book-Matched Bath",
-    location: "New York, NY",
-    year: 2024,
-    category: "Renovation",
-    size: "1,100 sq ft",
-    duration: "6 months",
-    scope: ["Bathroom renovation", "Millwork", "Lighting"],
-    cover: p8,
-    gallery: [p8, p1, p6, p4],
-    summary:
-      "A pre-war penthouse bathroom reimagined as a single sculptural volume in Grigio Carnico marble and hand-patinated bronze.",
-    narrative: [
-      "The client wanted a bathroom that felt like a private chapel. We stripped the space to the slab and rebuilt around a single continuous slab wall, book-matched across four elevations.",
-      "The tubs — one carved from limestone, one from travertine — sit on a floor of honed Bianco Dolomiti with a hand-cut border in Nero Marquina.",
-      "The lighting is entirely indirect: warm cove light at the ceiling, wall sconces from a small atelier in Barcelona, and nothing else.",
-    ],
-  },
+ 
 ];
 
 export function getProject(slug: string): Project | undefined {

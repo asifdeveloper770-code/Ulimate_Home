@@ -1,27 +1,17 @@
 import { createFileRoute, Link, Outlet, useLocation } from "@tanstack/react-router";
+import { zodValidator, fallback } from "@tanstack/zod-adapter";
+import { z } from "zod";
+import { CATEGORIES, GALLERY } from "@/lib/gallery";
 
-// 1. Fetch all local asset references from the folder
-const imageModules = import.meta.glob('../assets/*.{png,jpg,jpeg,svg}', { eager: true });
-
-// 2. Format files into an accessible structured data array
-const allImagesFromFolder = Object.entries(imageModules).map(([path, mod]: [string, any]) => {
-  const fileName = path.split('/').pop() || '';
-  
-  // Clean up a clean title from the filename (e.g., "luxury-living-room.jpg" -> "Luxury Living Room")
-  const title = fileName
-    .replace(/\.[^/.]+$/, "") // Remove file extension
-    .split(/[-_]/)            // Split on dashes/underscores
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-
-  return {
-    src: mod.default,
-    fileName,
-    title,
-  };
+const searchSchema = z.object({
+  category: fallback(z.enum(CATEGORIES), "All").default("All"),
 });
 
+const imageModules = import.meta.glob('../assets/*.{png,jpg,jpeg,svg}', { eager: true });
+const imagesArray = Object.values(imageModules).map((mod: any) => mod.default);
+
 export const Route = createFileRoute("/gallery")({
+  validateSearch: zodValidator(searchSchema),
   head: () => ({
     meta: [
       { title: "Gallery — Ultimate Pro Builders" },
@@ -72,42 +62,107 @@ function GalleryNavbar() {
 }
 
 function PortfolioIndex() {
-  return (
-    <>
-      <section className="pt-24 md:pt-32 pb-16">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-12">
-          <p className="eyebrow mb-6">Gallery</p>
-          <h1 className="text-5xl md:text-7xl text-cream max-w-4xl leading-[0.95]">
-            Spaces we've
-            <span className="italic gold-text"> crafted.</span>
-          </h1>
-          <p className="mt-8 max-w-xl text-muted-foreground">
-            Browse our complete collection of luxury homes, custom interiors, cabinetry, millwork and renovations.
-          </p>
-        </div>
-      </section>
+  const { category } = Route.useSearch();
+  const filtered =
+    category === "All"
+      ? GALLERY
+      : GALLERY.filter(
+        (item) => item.category === category
+      );
+  return <>
+    <section className="pt-24 md:pt-32 pb-16">
 
-      <section className="py-16 md:py-24 border-t border-border">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-12">
-          {allImagesFromFolder.length === 0 ? (
-            <p className="text-muted-foreground">No image files found in the source directory.</p>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {allImagesFromFolder.map((img) => (
-                <div key={img.fileName} className="overflow-hidden group border border-border/40 bg-muted/10">
-                  <div className="overflow-hidden">
-                    <img 
-                      src={img.src} 
-                      alt={img.title} 
-                      className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
-    </>
-  );
-}
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12">
+
+        <p className="eyebrow mb-6">
+          Gallery
+        </p>
+
+        <h1 className="text-5xl md:text-7xl text-cream max-w-4xl leading-[0.95]">
+
+          Spaces we've
+          <span className="italic gold-text">
+            {" "}crafted.
+          </span>
+
+        </h1>
+
+        <p className="mt-8 max-w-xl text-muted-foreground">
+
+          Browse our collection of luxury homes,
+          custom interiors,
+          cabinetry,
+          millwork and renovations.
+
+        </p>
+
+      </div>
+
+    </section>
+
+    <section className="border-y border-border">
+
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 py-6 flex flex-wrap gap-4">
+
+        {CATEGORIES.map((c) => {
+
+          const active = c === category;
+
+          return (
+
+            <Link
+              key={c}
+              to="/gallery"
+              search={{ category: c }}
+              className={`px-4 py-2 border uppercase text-xs tracking-[0.25em]
+${active
+                  ? "border-gold text-gold"
+                  : "border-transparent text-muted-foreground hover:text-cream"
+                }`}
+            >
+
+              {c}
+
+              {/* <span className="ml-2 opacity-60">
+
+                (
+                {c === "All"
+                  ? GALLERY.length
+                  : GALLERY.filter(x => x.category === c).length}
+
+                )
+
+              </span> */}
+
+            </Link>
+
+          );
+
+        })}
+
+      </div>
+
+    </section>
+
+    <section className="py-16 md:py-24">
+
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12">
+
+        {filtered.length === 0 ? (
+          <p className="text-muted-foreground">
+            No projects in this category yet.
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+
+          {imagesArray.map((src, index) => (
+        <img key={index} src={src} alt={`Local asset ${index}`} />
+      ))}
+          </div>
+        )}
+
+      </div>
+
+    </section>
+  </>
+} 
