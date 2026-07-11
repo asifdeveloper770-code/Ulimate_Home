@@ -39,7 +39,7 @@ function PortfolioLayout() {
       {isIndex ? <PortfolioIndex /> : <Outlet />}
     </main>
   );
-}
+} 
 
 function GalleryNavbar() {
   return (
