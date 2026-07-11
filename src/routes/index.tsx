@@ -7,7 +7,13 @@ import p1 from "@/assets/project-1.jpg";
 import p2 from "@/assets/project-2.jpg";
 import p3 from "@/assets/project-3.jpg";
 import p4 from "@/assets/project-4.jpg";
-import processImg from "@/assets/process.jpg";
+import Millwork from "@/assets/WhatsApp Video 2026-07-08 at 10.27.34 PM.mp4";
+import Custom from "@/assets/WhatsApp Video 2026-07-08 at 10.22.44 PM.mp4";
+import Luxury from "@/assets/WhatsApp Video 2026-07-08 at 10.22.44 PM (2).mp4";
+import Bathrooms from "@/assets/WhatsApp Video 2026-07-08 at 10.22.45 PM.mp4";
+import Kitchens from "@/assets/WhatsApp Video 2026-07-08 at 10.26.18 PM.mp4";
+import Rego from "@/assets/WhatsApp Video 2026-07-08 at 10.27.34 PM.mp4";
+
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -17,37 +23,37 @@ const serviceVideos = [
     id: 1,
     title: "Millwork & Luxury Furniture",
     description: "Handcrafted interiors with exceptional attention.",
-    video: "src/assets/WhatsApp Video 2026-07-08 at 10.27.34 PM.mp4",
+    video: Millwork,
   },
   {
     id: 2,
     title: "Custom Building",
     description: "Luxury homes built from foundation to finish.",
-    video: "src/assets/WhatsApp Video 2026-07-08 at 10.22.44 PM.mp4",
+    video: Custom,
   },
   {
     id: 3,
     title: "Luxury Remodels",
     description: "Transforming homes into timeless living spaces.",
-    video: "src/assets/WhatsApp Video 2026-07-08 at 10.22.44 PM (2).mp4",
+    video: Luxury,
   },
   {
     id: 4,
     title: "Bathrooms & Kitchens",
     description: "Elegant spaces designed for everyday luxury.",
-    video: "src/assets/WhatsApp Video 2026-07-08 at 10.22.45 PM.mp4",
+    video: Bathrooms,
   },
   {
     id: 5,
     title: "Bathrooms & Kitchens",
     description: "Elegant spaces designed for everyday luxury.",
-    video: "src/assets/WhatsApp Video 2026-07-08 at 10.26.18 PM.mp4",
+    video: Kitchens,
   },
   {
     id: 6,
     title: "Bathrooms & Kitchens",
     description: "Elegant spaces designed for everyday luxury.",
-    video: "src/assets/WhatsApp Video 2026-07-08 at 10.27.34 PM.mp4",
+    video: Rego,
   },
 ];
 
