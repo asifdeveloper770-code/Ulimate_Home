@@ -27,14 +27,14 @@ import p63 from "@/assets/WhatsApp Image 2026-07-08 at 10.27.09 PM.jpeg";
 import p71 from "@/assets/WhatsApp Image 2026-07-08 at 10.26.22 PM.jpeg";
 import p72 from "@/assets/WhatsApp Image 2026-07-08 at 10.22.26 PM (1).jpeg";
 import p73 from "@/assets/WhatsApp Image 2026-07-08 at 10.27.36 PM.jpeg";
-import p74 from "@/assets/cabinetry .jpeg";
-import p75 from "@/assets/cabinetry 1.jpeg";
-import p76 from "@/assets/cabinetry 2.jpeg";
-import p77 from "@/assets/hall 2.jpeg";
+import p74 from "@/assets/cabinetry.jpeg";
+import p75 from "@/assets/cabinetry1.jpeg";
+import p76 from "@/assets/cabinetry2.jpeg";
+import p77 from "@/assets/hall2.jpeg";
 import p80 from "@/assets/hall.jpeg";
-import p78 from "@/assets/hall 1.jpeg";
+import p78 from "@/assets/hall1.jpeg";
 import p79 from "@/assets/bathroom.jpeg";
-import p81 from "@/assets/Cabinetry 4.jpeg";
+import p81 from "@/assets/Cabinetry4.jpeg";
 
 export const CATEGORIES = [
   "All",
