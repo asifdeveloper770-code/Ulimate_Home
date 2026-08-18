@@ -27,6 +27,14 @@ import p63 from "@/assets/WhatsApp Image 2026-07-08 at 10.27.09 PM.jpeg";
 import p71 from "@/assets/WhatsApp Image 2026-07-08 at 10.26.22 PM.jpeg";
 import p72 from "@/assets/WhatsApp Image 2026-07-08 at 10.22.26 PM (1).jpeg";
 import p73 from "@/assets/WhatsApp Image 2026-07-08 at 10.27.36 PM.jpeg";
+import p74 from "@/assets/cabinetry .jpeg";
+import p75 from "@/assets/cabinetry 1.jpeg";
+import p76 from "@/assets/cabinetry 2.jpeg";
+import p77 from "@/assets/hall 2.jpeg";
+import p80 from "@/assets/hall.jpeg";
+import p78 from "@/assets/hall 1.jpeg";
+import p79 from "@/assets/bathroom.jpeg";
+import p81 from "@/assets/Cabinetry 4.jpeg";
 
 export const CATEGORIES = [
   "All",
@@ -57,14 +65,14 @@ export const PROJECTS: Project[] = [
   {
     slug: "ridgeline-residence",
     title: "Cabinetry",
-    location: "Aspen, CO",
-    year: 2024,
+    location: "Boca Raton, FL",
+    year: 2026,
     category: "Custom Homes",
     size: "12,400 sq ft",
     duration: "28 months",
     scope: ["Ground-up construction", "Architecture", "Interior design", "Landscape"],
     cover: p3,
-    gallery: [p31, p32, p33],
+    gallery: [p74, p75, p76, p31, p32, p33, p81],
     summary:
       "A mountain retreat carved into a south-facing ridge, framing the Elk range through walls of glass and hand-set stone.",
     narrative: [
@@ -76,8 +84,8 @@ export const PROJECTS: Project[] = [
   {
     slug: "marble-brass-kitchen",
     title: "Wood Works",
-    location: "Beverly Hills, CA",
-    year: 2024,
+    location: "Venetian Islands, FL",
+    year: 2026,
     category: "Interior Design",
     size: "1,800 sq ft",
     duration: "9 months",
@@ -95,8 +103,8 @@ export const PROJECTS: Project[] = [
   {
     slug: "alpine-glass-house",
     title: "Kitchens",
-    location: "Park City, UT",
-    year: 2023,
+    location: "Miami Beach, FL",
+    year: 2026,
     category: "Architecture",
     size: "8,900 sq ft",
     duration: "22 months",
@@ -114,8 +122,8 @@ export const PROJECTS: Project[] = [
   {
     slug: "serenity-master-suite",
     title: "Remodels",
-    location: "Greenwich, CT",
-    year: 2023,
+    location: "STAR Island, FL",
+    year: 2026,
     category: "Renovation",
     size: "2,400 sq ft",
     duration: "11 months",
@@ -133,8 +141,8 @@ export const PROJECTS: Project[] = [
   {
     slug: "twilight-estate",
     title: "Customs Homes",
-    location: "Napa Valley, CA",
-    year: 2024,
+    location: "Miami, FL",
+    year: 2026,
     category: "Custom Homes",
     size: "18,200 sq ft",
     duration: "34 months",
@@ -160,14 +168,14 @@ export const PROJECTS: Project[] = [
   {
     slug: "great-room-reimagined",
     title: "Millwork",
-    location: "Lake Forest, IL",
-    year: 2024,
+    location: "Coral Gables, FL",
+    year: 2026,
     category: "Interior Design",
     size: "3,600 sq ft",
     duration: "7 months",
     scope: ["Interior design", "Art curation", "Custom furniture"],
     cover: p6,
-    gallery: [p61, p62, p63],
+    gallery: [p61, p62, p63, p77, p78, p80],
     summary:
       "A two-story great room refreshed with book-matched marble, warm walnut paneling, and a bespoke sculptural chandelier.",
     narrative: [
@@ -179,14 +187,14 @@ export const PROJECTS: Project[] = [
   {
     slug: "coastal-belvedere",
     title: "Bathroom",
-    location: "Malibu, CA",
-    year: 2023,
+    location: "Venetian Islands, FL",
+    year: 2026,
     category: "Architecture",
     size: "6,700 sq ft",
     duration: "19 months",
     scope: ["Architectural design", "Construction management"],
-    cover: p7,
-    gallery: [p71, p72, p73],
+    cover: p79,
+    gallery: [p79, p71, p72, p73],
     summary:
       "A cliffside residence organized around a single long terrace, engineered to withstand ocean weather without ever feeling armored.",
     narrative: [

@@ -14,6 +14,7 @@ import Luxury from "@/assets/WhatsApp Video 2026-07-08 at 10.22.44 PM (2).mp4";
 import Bathrooms from "@/assets/WhatsApp Video 2026-07-08 at 10.22.45 PM.mp4";
 import Kitchens from "@/assets/WhatsApp Video 2026-07-08 at 10.26.18 PM.mp4";
 import Rego from "@/assets/WhatsApp Video 2026-07-08 at 10.27.34 PM.mp4";
+import logo from "@/assets/logo.png";
 
 
 export const Route = createFileRoute("/")({
@@ -60,10 +61,10 @@ const serviceVideos = [
 
 
 const projects = [
-  { slug: "ridgeline-residence", title: "The Ridgeline Residence", location: "Aspen, CO", type: "Custom Estate", img: p3 },
-  { slug: "marble-brass-kitchen", title: "Marble & Brass Kitchen", location: "Beverly Hills, CA", type: "Interior Design", img: p1 },
-  { slug: "alpine-glass-house", title: "Alpine Glass House", location: "Park City, UT", type: "Architecture", img: p2 },
-  { slug: "serenity-master-suite", title: "Serenity Master Suite", location: "Greenwich, CT", type: "Renovation", img: p4 },
+  { slug: "ridgeline-residence", title: "The Ridgeline Residence", location: "Venetian Islands, FL", type: "Custom Estate", img: p3 },
+  { slug: "marble-brass-kitchen", title: "Marble & Brass Kitchen", location: "Miami, FL", type: "Interior Design", img: p1 },
+  { slug: "alpine-glass-house", title: "Alpine Glass House", location: "STAR Island, FL", type: "Architecture", img: p2 },
+  { slug: "serenity-master-suite", title: "Serenity Master Suite", location: "Miami Beach, FL", type: "Renovation", img: p4 },
 ];
 
 const services = [
@@ -83,10 +84,12 @@ function Nav() {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-background/85 backdrop-blur-md border-b border-border" : "bg-transparent"}`}>
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
-        <a href="#top" className="flex items-baseline gap-2">
-          <span className="font-display text-2xl text-cream tracking-tight">Ultimate</span>
-          <span className="font-display text-2xl gold-text italic">Pro</span>
-          <span className="font-display text-2xl text-cream">Builders</span>
+        <a href="#top" className="flex items-center">
+          <img
+            src={logo}
+            alt="Ultimate Pro Builders"
+            className="h-28 w-auto object-contain"
+          />
         </a>
         <nav className="hidden lg:flex items-center gap-10">
           <Link to="/gallery" className="text-[11px] tracking-[0.28em] uppercase text-foreground hover:text-gold transition-colors">Gallery</Link>
