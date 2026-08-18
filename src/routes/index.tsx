@@ -63,7 +63,7 @@ const serviceVideos = [
 const projects = [
   { slug: "ridgeline-residence", title: "The Ridgeline Residence", location: "Venetian Islands, FL", type: "Custom Estate", img: p3 },
   { slug: "marble-brass-kitchen", title: "Marble & Brass Kitchen", location: "Miami, FL", type: "Interior Design", img: p1 },
-  { slug: "alpine-glass-house", title: "Alpine Glass House", location: "Greenwich CT", type: "Architecture", img: p2 },
+  { slug: "alpine-glass-house", title: "Alpine Glass House", location: "Greenwich, CT", type: "Architecture", img: p2 },
   { slug: "serenity-master-suite", title: "Serenity Master Suite", location: "Miami Beach, FL", type: "Renovation", img: p4 },
 ];
 
