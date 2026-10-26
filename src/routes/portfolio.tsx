@@ -7,7 +7,6 @@ const searchSchema = z.object({
   category: fallback(z.enum(CATEGORIES), "All").default("All"),
 });
 
-
 export const Route = createFileRoute("/portfolio")({
   validateSearch: zodValidator(searchSchema),
   head: () => ({
@@ -49,10 +48,27 @@ function PortfolioNav() {
           <span className="font-display text-2xl text-cream">Builders</span>
         </Link>
         <nav className="hidden md:flex gap-10 text-sm uppercase tracking-widest">
-          <Link to="/" className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground hover:text-gold">Home</Link>
-          <Link to="/portfolio" className="text-[11px] tracking-[0.28em] uppercase text-gold">Portfolio</Link>
-          <Link to="/gallery" className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground hover:text-gold">Gallery</Link>
-          <Link to="/" className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground hover:text-gold">Contact</Link>
+          <Link
+            to="/"
+            className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground hover:text-gold"
+          >
+            Home
+          </Link>
+          <Link to="/portfolio" className="text-[11px] tracking-[0.28em] uppercase text-gold">
+            Portfolio
+          </Link>
+          <Link
+            to="/gallery"
+            className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground hover:text-gold"
+          >
+            Gallery
+          </Link>
+          <Link
+            to="/"
+            className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground hover:text-gold"
+          >
+            Contact
+          </Link>
         </nav>
       </div>
     </header>
@@ -72,14 +88,17 @@ function PortfolioIndex() {
             A record of what we've <span className="italic gold-text">quietly built.</span>
           </h1>
           <p className="mt-8 max-w-xl text-base text-muted-foreground leading-relaxed">
-            Selected residences, interiors, and renovations. Every project is a private commission — we've included only what our clients have permitted us to show.
+            Selected residences, interiors, and renovations. Every project is a private commission —
+            we've included only what our clients have permitted us to show.
           </p>
         </div>
       </section>
 
       <section className="border-y border-border">
         <div className="max-w-[1600px] mx-auto px-6 md:px-12 py-6 flex flex-wrap gap-3 md:gap-6 items-center">
-          <span className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground mr-2">Filter</span>
+          <span className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground mr-2">
+            Filter
+          </span>
           {CATEGORIES.map((c) => {
             const active = c === category;
             return (
@@ -131,7 +150,9 @@ function PortfolioIndex() {
                     <div>
                       <div className="flex items-center gap-3 mb-2">
                         <span className="w-6 h-px bg-gold" />
-                        <span className="text-[10px] tracking-[0.3em] uppercase text-gold">{p.category}</span>
+                        <span className="text-[10px] tracking-[0.3em] uppercase text-gold">
+                          {p.category}
+                        </span>
                       </div>
                       <h3 className="font-display text-2xl md:text-3xl text-cream group-hover:text-gold transition-colors">
                         {p.title}
@@ -140,7 +161,9 @@ function PortfolioIndex() {
                         {p.location} · {p.year}
                       </p>
                     </div>
-                    <span className="text-gold text-lg pt-1" aria-hidden>→</span>
+                    <span className="text-gold text-lg pt-1" aria-hidden>
+                      →
+                    </span>
                   </div>
                 </Link>
               ))}

@@ -69,7 +69,9 @@ function CaseStudy() {
         <div className="relative z-10 h-full max-w-[1600px] mx-auto px-6 md:px-12 flex flex-col justify-end pb-16 md:pb-24">
           <div className="flex items-center gap-3 mb-5">
             <span className="w-8 h-px bg-gold" />
-            <span className="text-[10px] tracking-[0.3em] uppercase text-gold">{project.category}</span>
+            <span className="text-[10px] tracking-[0.3em] uppercase text-gold">
+              {project.category}
+            </span>
           </div>
           <h1 className="text-4xl md:text-6xl lg:text-7xl text-cream max-w-4xl leading-[1]">
             {project.title}
@@ -89,7 +91,9 @@ function CaseStudy() {
             { l: "Duration", v: project.duration },
           ].map((s) => (
             <div key={s.l}>
-              <div className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-2">{s.l}</div>
+              <div className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-2">
+                {s.l}
+              </div>
               <div className="text-cream text-lg">{s.v}</div>
             </div>
           ))}
@@ -152,12 +156,10 @@ function CaseStudy() {
           >
             ← All Projects
           </Link>
-          <Link
-            to="/portfolio/$slug"
-            params={{ slug: next.slug }}
-            className="group text-right"
-          >
-            <div className="text-[10px] tracking-[0.3em] uppercase text-gold mb-2">Next Project</div>
+          <Link to="/portfolio/$slug" params={{ slug: next.slug }} className="group text-right">
+            <div className="text-[10px] tracking-[0.3em] uppercase text-gold mb-2">
+              Next Project
+            </div>
             <div className="font-display text-3xl md:text-4xl text-cream group-hover:text-gold transition-colors">
               {next.title} →
             </div>

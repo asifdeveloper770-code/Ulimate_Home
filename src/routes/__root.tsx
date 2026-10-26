@@ -45,12 +45,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-3xl text-foreground">Something went wrong</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Please try again or return home.
-        </p>
+        <p className="mt-2 text-sm text-muted-foreground">Please try again or return home.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           <button
-            onClick={() => { router.invalidate(); reset(); }}
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
             className="border border-gold px-6 py-3 text-xs tracking-[0.3em] uppercase text-gold hover:bg-gold hover:text-primary-foreground transition-colors"
           >
             Try again
@@ -73,22 +74,45 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Ultimate Pro Builders — Luxury Custom Home Construction" },
-      { name: "description", content: "Ultimate Pro Builders designs and constructs bespoke luxury homes, estates, and interiors — where uncompromising craftsmanship meets architectural vision." },
+      {
+        name: "description",
+        content:
+          "Ultimate Pro Builders designs and constructs bespoke luxury homes, estates, and interiors — where uncompromising craftsmanship meets architectural vision.",
+      },
       { name: "author", content: "Ultimate Pro Builders" },
       { property: "og:title", content: "Ultimate Pro Builders — Luxury Custom Home Construction" },
-      { property: "og:description", content: "Ultimate Pro Builders designs and constructs bespoke luxury homes, estates, and interiors — where uncompromising craftsmanship meets architectural vision." },
+      {
+        property: "og:description",
+        content:
+          "Ultimate Pro Builders designs and constructs bespoke luxury homes, estates, and interiors — where uncompromising craftsmanship meets architectural vision.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Ultimate Pro Builders — Luxury Custom Home Construction" },
-      { name: "twitter:description", content: "Ultimate Pro Builders designs and constructs bespoke luxury homes, estates, and interiors — where uncompromising craftsmanship meets architectural vision." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2a167fc9-7745-4d33-9fca-0474c43f66cf/id-preview-04c4ac21--73de7b45-bc2e-494e-9761-bb3ad9430105.lovable.app-1783366559968.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2a167fc9-7745-4d33-9fca-0474c43f66cf/id-preview-04c4ac21--73de7b45-bc2e-494e-9761-bb3ad9430105.lovable.app-1783366559968.png" },
+      {
+        name: "twitter:description",
+        content:
+          "Ultimate Pro Builders designs and constructs bespoke luxury homes, estates, and interiors — where uncompromising craftsmanship meets architectural vision.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2a167fc9-7745-4d33-9fca-0474c43f66cf/id-preview-04c4ac21--73de7b45-bc2e-494e-9761-bb3ad9430105.lovable.app-1783366559968.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2a167fc9-7745-4d33-9fca-0474c43f66cf/id-preview-04c4ac21--73de7b45-bc2e-494e-9761-bb3ad9430105.lovable.app-1783366559968.png",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap",
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -99,11 +123,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         {children}
         <Scripts />
       </body>

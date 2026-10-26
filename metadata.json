@@ -1,0 +1,6 @@
+{
+  "name": "Ultimate Pro Builders",
+  "description": "Bespoke luxury custom home construction, architecture, and interior showcase.",
+  "requestFramePermissions": [],
+  "capabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -203,7 +203,6 @@ export const PROJECTS: Project[] = [
       "The house is quiet, generous, and — because of the material choices — genuinely maintenance-free.",
     ],
   },
- 
 ];
 
 export function getProject(slug: string): Project | undefined {
