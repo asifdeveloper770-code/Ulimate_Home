@@ -65,6 +65,7 @@ function PortfolioNav() {
           </Link>
           <Link
             to="/"
+            hash="contact"
             className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground hover:text-gold"
           >
             Contact

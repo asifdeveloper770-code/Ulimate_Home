@@ -18,7 +18,14 @@ import logo from "@/assets/logo.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
-    meta: [{ title: "404 - Page Not Found" }],
+    meta: [
+      { title: "Ultimate Pro Builders — Luxury Custom Home Construction" },
+      {
+        name: "description",
+        content:
+          "Ultimate Pro Builders designs and constructs bespoke luxury homes, estates, and interiors — where uncompromising craftsmanship meets architectural vision.",
+      },
+    ],
   }),
   component: Home,
 });
@@ -143,18 +150,18 @@ function Nav() {
           >
             Portfolio
           </Link>
-          <Link
-            to="/"
+          <a
+            href="#about"
             className="text-[11px] tracking-[0.28em] uppercase text-foreground hover:text-gold transition-colors"
           >
             About
-          </Link>
-          <Link
-            to="/"
+          </a>
+          <a
+            href="#contact"
             className="text-[11px] tracking-[0.28em] uppercase text-foreground hover:text-gold transition-colors"
           >
             Contact
-          </Link>
+          </a>
         </nav>
         <a
           href="#contact"
@@ -671,35 +678,19 @@ function Footer() {
 }
 
 function Home() {
+  useReveal();
   return (
-    <main className="min-h-screen bg-background flex flex-col items-center justify-center px-6 py-16 text-center select-none">
-      <div className="max-w-xl w-full mx-auto space-y-8">
-        <div>
-          <span className="eyebrow inline-block mb-3 px-3 py-1 border border-gold/30 rounded text-[10px] tracking-[0.3em] uppercase text-gold">
-            Error 404
-          </span>
-          <h1 className="font-display text-7xl md:text-9xl text-cream font-light tracking-tight">
-            404
-          </h1>
-          <h2 className="text-xl md:text-2xl text-cream/90 font-light mt-3 tracking-wide">
-            Page Not Found
-          </h2>
-        </div>
-
-        <div className="w-16 h-px bg-gold/50 mx-auto" />
-
-        <div className="space-y-3 text-sm md:text-base text-muted-foreground leading-relaxed max-w-lg mx-auto">
-          <p>If you are a visitor, contact the website owner or try again later.</p>
-          <p>If you are the owner, please contact the developer for the issue.</p>
-        </div>
-
-        <div className="pt-2">
-          <div className="inline-flex items-center gap-2.5 px-4 py-2 border border-border/80 bg-card/60 rounded text-xs text-muted-foreground tracking-wider uppercase">
-            <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
-            <span>Issue related to compliance</span>
-          </div>
-        </div>
-      </div>
+    <main className="bg-background grain">
+      <Nav />
+      <Hero />
+      <Stats />
+      <Marquee />
+      <Projects />
+      <Services />
+      <Process />
+      <About />
+      <CTA />
+      <Footer />
     </main>
   );
 }
