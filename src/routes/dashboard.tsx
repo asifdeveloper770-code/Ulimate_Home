@@ -15,7 +15,10 @@ import {
   TrendingUp,
   ArrowUpRight,
   Layers,
+  Lock,
+  AlertCircle,
 } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 // 1. Define valid dashboard sections via Zod
 const DASHBOARD_TABS = ["Overview", "Properties", "Blueprints", "Financials"] as const;
@@ -42,20 +45,37 @@ export const Route = createFileRoute("/dashboard")({
    2. AUTH MATRIX / GUARD LAYER
    ========================================================================== */
 function DashboardGuard() {
-  // Simple auth gate mechanism — swap with your token/auth provider if needed
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  if (isAuthenticated) {
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const isAuth = sessionStorage.getItem("upb_admin_auth") === "true";
+      if (isAuth) {
+        setIsAuthenticated(true);
+      }
+    }
+  }, []);
+
+  if (!isAuthenticated) {
     return <LoginView onLogin={() => setIsAuthenticated(true)} />;
   }
 
-  return <DashboardLayout />;
+  return (
+    <DashboardLayout
+      onLogout={() => {
+        if (typeof window !== "undefined") {
+          sessionStorage.removeItem("upb_admin_auth");
+        }
+        setIsAuthenticated(false);
+      }}
+    />
+  );
 }
 
 /* ==========================================================================
    3. SECURE CONTROL PANEL BASE LAYOUT
    ========================================================================== */
-function DashboardLayout() {
+function DashboardLayout({ onLogout }: { onLogout: () => void }) {
   const { tab } = Route.useSearch();
   const { pathname } = useLocation();
   const navigate = useNavigate({ from: Route.fullPath });
@@ -68,8 +88,7 @@ function DashboardLayout() {
   ];
 
   const handleLogout = () => {
-    // Perform cleanup or state resets
-    window.location.reload();
+    onLogout();
   };
 
   // Determine if showing standard panels or nesting direct sub-routes
@@ -118,12 +137,12 @@ function DashboardLayout() {
         {/* Identity & Session Control */}
         <div className="border-t border-border/60 pt-4 space-y-4">
           <div className="flex items-center gap-3 px-2">
-            <div className="h-9 w-9 rounded-full bg-border flex items-center justify-center overflow-hidden border border-gold/30">
-              <User className="h-5 w-5 text-muted-foreground" />
+            <div className="h-9 w-9 rounded-full bg-gold/10 flex items-center justify-center overflow-hidden border border-gold/40">
+              <User className="h-5 w-5 text-gold" />
             </div>
             <div className="overflow-hidden">
-              <p className="text-xs font-medium text-cream truncate">Julian Thorne</p>
-              <p className="text-[10px] text-muted-foreground truncate">Principal Director</p>
+              <p className="text-xs font-medium text-cream truncate">Admin</p>
+              <p className="text-[10px] text-muted-foreground truncate">System Administrator</p>
             </div>
           </div>
           <button
@@ -319,80 +338,175 @@ function DashboardMetricsView({ tab }: { tab: (typeof DASHBOARD_TABS)[number] })
    5. SPLIT-SCREEN AUTHENTRY CONTEXT
    ========================================================================== */
 function LoginView({ onLogin }: { onLogin: () => void }) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onLogin();
+    const cleanUser = username.trim().toLowerCase();
+    if (
+      (cleanUser === "admin" || cleanUser === "admin@ultimateprobuilders.com") &&
+      password === "admin@321"
+    ) {
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem("upb_admin_auth", "true");
+      }
+      setError("");
+      onLogin();
+    } else {
+      setError("Invalid credentials. Please enter valid admin username and password.");
+    }
+  };
+
+  const handleQuickFill = () => {
+    setUsername("admin");
+    setPassword("admin@321");
+    setError("");
   };
 
   return (
     <div className="min-h-screen w-full grid lg:grid-cols-2 bg-black text-cream selection:bg-gold/30">
-      <div className="flex flex-col justify-between p-8 md:p-16 lg:p-24">
-        <div className="flex items-center gap-3">
-          <div className="h-9 w-9 rounded-lg bg-gold/10 border border-gold/30 flex items-center justify-center text-gold font-display font-bold text-xl">
-            Ω
+      <div className="flex flex-col justify-between p-8 md:p-14 lg:p-20">
+        <Link to="/" className="flex items-center gap-3">
+          <img src={logo} alt="Ultimate Pro Builders" className="h-10 w-auto object-contain" />
+          <div>
+            <span className="font-display text-xl text-cream tracking-tight block">
+              Ultimate <span className="gold-text italic">Pro</span> Builders
+            </span>
+            <span className="text-[10px] tracking-[0.25em] uppercase text-gold block">
+              Administrative Control Matrix
+            </span>
           </div>
-          <span className="font-display tracking-widest text-sm uppercase text-cream">Aethel</span>
-        </div>
+        </Link>
 
-        <div className="max-w-md w-full mx-auto my-auto py-12">
-          <h2 className="text-3xl md:text-4xl font-light tracking-tight text-cream mb-3">
-            Welcome back
+        <div className="max-w-md w-full mx-auto my-auto py-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold text-[10px] tracking-[0.25em] uppercase mb-4">
+            <Lock className="h-3 w-3" /> Secure Access
+          </div>
+
+          <h2 className="text-3xl md:text-4xl font-light tracking-tight text-cream mb-2">
+            Administrator Portal
           </h2>
-          <p className="text-muted-foreground text-sm mb-8">
-            Access your custom home build workspace and engineering directives.
+          <p className="text-muted-foreground text-sm mb-6">
+            Enter authorized admin credentials to access architectural projects, blueprints, and
+            build directives.
           </p>
+
+          {/* Preset Credentials Hint & Quick Fill */}
+          <div className="mb-6 p-3.5 rounded-xl bg-card/60 border border-border/80 flex items-center justify-between text-xs text-muted-foreground">
+            <div className="space-y-0.5">
+              <span className="text-[10px] uppercase tracking-wider text-gold font-medium block">
+                Admin Credentials
+              </span>
+              <p className="text-cream text-xs font-mono">
+                User: <span className="text-gold">admin</span> &bull; Pass:{" "}
+                <span className="text-gold">admin@321</span>
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={handleQuickFill}
+              className="px-3 py-1.5 rounded-lg border border-gold/40 text-gold hover:bg-gold hover:text-black text-[11px] uppercase tracking-wider transition-all duration-300 font-medium"
+            >
+              Fill In
+            </button>
+          </div>
+
+          {error && (
+            <div className="mb-6 p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center gap-3 text-rose-300 text-xs">
+              <AlertCircle className="h-4 w-4 shrink-0 text-rose-400" />
+              <span>{error}</span>
+            </div>
+          )}
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label className="block text-xs uppercase tracking-wider text-muted-foreground mb-2">
-                Email Address
+                Username or Email
               </label>
               <input
-                type="email"
+                type="text"
                 required
-                placeholder="architect@aethel.design"
-                className="w-full bg-card border border-border/60 rounded-xl px-4 py-3 text-sm text-cream placeholder:text-muted-foreground/50 focus:outline-none focus:border-gold transition-colors duration-300"
+                autoCapitalize="none"
+                autoCorrect="off"
+                value={username}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                  setError("");
+                }}
+                placeholder="admin"
+                className="w-full bg-card border border-border/60 rounded-xl px-4 py-3 text-sm text-cream placeholder:text-muted-foreground/40 focus:outline-none focus:border-gold transition-colors duration-300"
               />
             </div>
+
             <div>
               <div className="flex justify-between items-center mb-2">
                 <label className="block text-xs uppercase tracking-wider text-muted-foreground">
                   Password
                 </label>
-                <a
-                  href="#forgot"
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
                   className="text-xs text-gold/80 hover:text-gold transition-colors"
                 >
-                  Forgot?
-                </a>
+                  {showPassword ? "Hide" : "Show"}
+                </button>
               </div>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 required
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setError("");
+                }}
                 placeholder="••••••••"
-                className="w-full bg-card border border-border/60 rounded-xl px-4 py-3 text-sm text-cream placeholder:text-muted-foreground/50 focus:outline-none focus:border-gold transition-colors duration-300"
+                className="w-full bg-card border border-border/60 rounded-xl px-4 py-3 text-sm text-cream placeholder:text-muted-foreground/40 focus:outline-none focus:border-gold transition-colors duration-300"
               />
             </div>
+
             <button
               type="submit"
-              className="w-full bg-cream text-black font-medium text-sm py-3.5 rounded-xl hover:bg-gold transition-all duration-300 transform active:scale-[0.99] mt-2 shadow-lg shadow-gold/5"
+              className="w-full bg-gold text-primary-foreground font-medium text-sm py-3.5 rounded-xl hover:bg-gold-soft transition-all duration-300 transform active:scale-[0.99] mt-2 shadow-lg shadow-gold/10"
             >
-              Sign In
+              Sign In as Admin
             </button>
           </form>
+
+          <div className="mt-6 text-center">
+            <Link
+              to="/"
+              className="text-xs text-muted-foreground hover:text-gold transition-colors uppercase tracking-wider"
+            >
+              &larr; Back to Public Website
+            </Link>
+          </div>
         </div>
+
         <p className="text-xs text-muted-foreground/60 text-center lg:text-left">
-          &copy; 2026 Ultimate Pro Builders.
+          &copy; 2026 Ultimate Pro Builders. Administrative Protected Area.
         </p>
       </div>
 
       <div className="hidden lg:block relative overflow-hidden m-4 rounded-3xl border border-border/40">
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent z-10" />
         <img
           src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
-          alt="Space"
+          alt="Luxury Architecture"
           className="w-full h-full object-cover brightness-75"
         />
+        <div className="absolute bottom-10 left-10 right-10 z-20">
+          <p className="eyebrow mb-2">Management Terminal</p>
+          <h3 className="font-display text-3xl text-cream">
+            Precision Craftsmanship. Real-Time Oversight.
+          </h3>
+          <p className="text-sm text-muted-foreground mt-2 max-w-md">
+            Direct access to architectural timelines, client approvals, and financial models across
+            all active estate builds.
+          </p>
+        </div>
       </div>
     </div>
   );
