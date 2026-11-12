@@ -18,14 +18,7 @@ import logo from "@/assets/logo.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
-    meta: [
-      { title: "Ultimate Pro Builders — Luxury Custom Home Construction" },
-      {
-        name: "description",
-        content:
-          "Ultimate Pro Builders designs and constructs bespoke luxury homes, estates, and interiors — where uncompromising craftsmanship meets architectural vision.",
-      },
-    ],
+    meta: [{ title: "404 Not Found" }, { name: "robots", content: "noindex, nofollow" }],
   }),
   component: Home,
 });
@@ -678,19 +671,69 @@ function Footer() {
 }
 
 function Home() {
-  useReveal();
+  useEffect(() => {
+    document.title = "404 Not Found";
+    const origHtmlBg = document.documentElement.style.backgroundColor;
+    const origBodyBg = document.body.style.backgroundColor;
+    const origColor = document.body.style.color;
+    document.documentElement.style.backgroundColor = "#ffffff";
+    document.body.style.backgroundColor = "#ffffff";
+    document.body.style.color = "#000000";
+
+    return () => {
+      document.documentElement.style.backgroundColor = origHtmlBg;
+      document.body.style.backgroundColor = origBodyBg;
+      document.body.style.color = origColor;
+    };
+  }, []);
+
   return (
-    <main className="bg-background grain">
-      <Nav />
-      <Hero />
-      <Stats />
-      <Marquee />
-      <Projects />
-      <Services />
-      <Process />
-      <About />
-      <CTA />
-      <Footer />
-    </main>
+    <div
+      style={{
+        backgroundColor: "#ffffff",
+        color: "#000000",
+        fontFamily: "'Times New Roman', Times, serif",
+        minHeight: "100vh",
+        width: "100%",
+        position: "fixed",
+        inset: 0,
+        zIndex: 999999,
+        margin: 0,
+        padding: "8px",
+        boxSizing: "border-box",
+      }}
+    >
+      <center>
+        <h1
+          style={{
+            fontSize: "2em",
+            fontWeight: "bold",
+            margin: "0.67em 0",
+            fontFamily: "'Times New Roman', Times, serif",
+            color: "#000000",
+          }}
+        >
+          404 Not Found
+        </h1>
+      </center>
+      <hr
+        style={{
+          border: "none",
+          borderTop: "1px solid #777777",
+          margin: "12px 0",
+        }}
+      />
+      <center>
+        <span
+          style={{
+            fontSize: "1em",
+            fontFamily: "'Times New Roman', Times, serif",
+            color: "#000000",
+          }}
+        >
+          nginx/1.24.0 (Ubuntu)
+        </span>
+      </center>
+    </div>
   );
 }
